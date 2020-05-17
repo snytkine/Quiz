@@ -20,6 +20,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Welcome from './welcome';
 import Counter from './counter';
+import UserButton from './userButton';
 
 const drawerWidth = 240;
 
@@ -79,6 +80,9 @@ const useStyles = makeStyles((theme: Theme) =>
             }),
             marginLeft: 0,
         },
+        title: {
+            flexGrow: 1,
+        },
     }),
 );
 
@@ -119,9 +123,12 @@ export default function MainLayout() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Persistent drawer
-          </Typography>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                        Quiz
+                    </Typography>
+                    <UserButton>
+
+                    </UserButton>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -140,10 +147,10 @@ export default function MainLayout() {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button onClick={()=>navigate('welcome')} key='welcome'>
+                    <ListItem button onClick={() => navigate('welcome')} key='welcome'>
                         <ListItemText primary="Welcome" />
                     </ListItem>
-                    <ListItem button onClick={()=>navigate('counter')} key='counter'>
+                    <ListItem button onClick={() => navigate('counter')} key='counter'>
                         <ListItemText primary="Counter" />
                     </ListItem>
                     {/*{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (

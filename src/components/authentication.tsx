@@ -11,7 +11,7 @@ interface IProfile {
     email?: string
 }
 
-interface IAuth {
+export interface IAuth {
     initialized: boolean
     profile: IProfile
 }
