@@ -12,12 +12,12 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
+import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Welcome from './welcome';
 import Counter from './counter';
 
@@ -82,9 +82,14 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
+    return <ListItem button component="a" {...props} />;
+}
+
 export default function MainLayout() {
     const classes = useStyles();
     const theme = useTheme();
+    const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -135,12 +140,18 @@ export default function MainLayout() {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button onClick={()=>navigate('welcome')} key='welcome'>
+                        <ListItemText primary="Welcome" />
+                    </ListItem>
+                    <ListItem button onClick={()=>navigate('counter')} key='counter'>
+                        <ListItemText primary="Counter" />
+                    </ListItem>
+                    {/*{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon
                             <ListItemText primary={text} />
                         </ListItem>
-                    ))}
+                    ))}*/}
                 </List>
             </Drawer>
             <main
@@ -153,8 +164,8 @@ export default function MainLayout() {
                     Welcome
                 </Typography>
                 <Routes>
-                    <Route path="welcome" element={<Welcome />}/>
-                    <Route path="counter" element={<Counter />}/>
+                    <Route path="welcome" element={<Welcome />} />
+                    <Route path="counter" element={<Counter />} />
                 </Routes>
             </main>
         </div>

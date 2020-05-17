@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import MainLayout from './components/mainlayout';
+import Authentication from './components/authentication'
 
 import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
@@ -14,9 +15,11 @@ const store = createStore(routeReducer, composeWithDevTools())
 function App() {
   return (
     <Provider store={store}>
-    <BrowserRouter>
-      <MainLayout />
-    </BrowserRouter>
+      <Authentication>
+        <BrowserRouter>
+          <MainLayout />
+        </BrowserRouter>
+      </Authentication>
     </Provider>
   );
 }
