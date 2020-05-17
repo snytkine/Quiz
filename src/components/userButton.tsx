@@ -6,13 +6,13 @@ import { IAuth } from './authentication';
 
 const mapStateToProps = (state: { auth: IAuth }) => {
     return {
-        auth: state.auth
+        imgSrc: state.auth?.profile?.imageURL
     }
 }
 
-let UserButton = (props: { auth?: IAuth }) => {
-
-    if (props.auth?.profile) {
+let UserButton = (props: { imgSrc: string }) => {
+    const { imgSrc } = props
+    if (imgSrc) {
         return (<IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -20,11 +20,11 @@ let UserButton = (props: { auth?: IAuth }) => {
             color="inherit"
         >
             <Avatar
-                src={props.auth.profile.imageURL}
+                src={imgSrc}
             />
         </IconButton>)
     } else {
-        return (<div></div>)
+        return null
     }
 }
 
