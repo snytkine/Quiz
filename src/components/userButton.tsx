@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { IconButton, Avatar } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-
-import { IAuth } from './authentication';
+import { Avatar, IconButton } from '@material-ui/core';
+import React from 'react';
 import { connect } from 'react-redux';
+import { IAuth } from './authentication';
+
 
 const mapStateToProps = (state: { auth: IAuth }) => {
     return {
