@@ -1,14 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import MainLayout from './components/mainlayout';
-import Authentication from './components/authentication'
-
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
-import routeReducer from './store/routeReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { Provider } from 'react-redux';
+import './App.css';
+import Authentication from './components/authentication';
+import MainLayout from './components/mainlayout';
+import routeReducer from './store/routeReducer';
+
 
 const store = createStore(routeReducer, composeWithDevTools())
 

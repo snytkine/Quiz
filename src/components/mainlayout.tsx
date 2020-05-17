@@ -1,25 +1,23 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import Welcome from './welcome';
+import MenuIcon from '@material-ui/icons/Menu';
+import clsx from 'clsx';
+import React from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Counter from './counter';
+import UserButton from './userButton';
+import Welcome from './welcome';
 
 const drawerWidth = 240;
 
@@ -79,12 +77,11 @@ const useStyles = makeStyles((theme: Theme) =>
             }),
             marginLeft: 0,
         },
+        title: {
+            flexGrow: 1,
+        },
     }),
 );
-
-function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
-    return <ListItem button component="a" {...props} />;
-}
 
 export default function MainLayout() {
     const classes = useStyles();
@@ -119,9 +116,12 @@ export default function MainLayout() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Persistent drawer
-          </Typography>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                        Quiz
+                    </Typography>
+                    <UserButton>
+
+                    </UserButton>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -140,18 +140,12 @@ export default function MainLayout() {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button onClick={()=>navigate('welcome')} key='welcome'>
+                    <ListItem button onClick={() => navigate('welcome')} key='welcome'>
                         <ListItemText primary="Welcome" />
                     </ListItem>
-                    <ListItem button onClick={()=>navigate('counter')} key='counter'>
+                    <ListItem button onClick={() => navigate('counter')} key='counter'>
                         <ListItemText primary="Counter" />
                     </ListItem>
-                    {/*{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}*/}
                 </List>
             </Drawer>
             <main
