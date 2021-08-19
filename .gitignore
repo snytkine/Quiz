@@ -7,4 +7,6 @@ Quiz-API.tgz
 .DS_Store
 Archive.zip
 app.zip
+env.json
+.aws-sam/
 *.zip

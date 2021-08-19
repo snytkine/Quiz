@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --pretty",
+    "postbuild": "cp package.json build/",
     "packagezip": "zip -r -X app.zip node_modules build Procfile",
     "start": "node build/index.js"
   },
